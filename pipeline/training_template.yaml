@@ -28,7 +28,7 @@ spec:
       default: 0.0
     storage_db:
       type: string
-
       default: "data/st22.db"
+
 
 
