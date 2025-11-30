@@ -3,9 +3,9 @@ kind: TrainingTemplate
 metadata:
   name: st22-shortdump-training-template
 spec:
-  image: "docker.io/s0026942030/shortdump-analysis:latest"
   imagePullSecrets:
     - name: rajdoc-registry
+  image: "docker.io/s0026942030/shortdump-analysis:latest"
   command: ["python", "main.py"]
 
   parameters:
@@ -34,4 +34,5 @@ spec:
     storage_db:
       type: string
       default: "data/st22.db"
+
 
