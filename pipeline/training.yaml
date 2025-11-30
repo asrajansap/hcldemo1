@@ -1,5 +1,5 @@
 apiVersion: ai.sap.com/v1alpha1
-kind: Training
+kind: training
 metadata:
   name: st22-shortdump-training
 spec:
@@ -24,4 +24,5 @@ spec:
     openai_model: "gpt-4o-mini"
     max_tokens: 800
     temperature: 0.0
+
     storage_db: "data/st22.db"
