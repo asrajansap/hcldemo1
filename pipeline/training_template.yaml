@@ -1,13 +1,11 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: trainingtemplate
 metadata:
-  name: st22-shortdump-training-template
+  name: st22-shortdump-training-template       
 spec:
-  image: "docker.io/s0026942030/shortdump-analysis:latest"
-
   imagePullSecrets:
     - name: rajdoc-registry
-
+  image: "docker.io/s0026942030/shortdump-analysis:latest"
   command: ["python", "main.py"]
 
   parameters:
@@ -32,3 +30,4 @@ spec:
       type: string
 
       default: "data/st22.db"
+
