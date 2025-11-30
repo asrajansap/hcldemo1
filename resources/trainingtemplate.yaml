@@ -4,10 +4,8 @@ metadata:
   name: st22-shortdump-training-template
 spec:
   image: "docker.io/s0026942030/shortdump-analysis:latest"
-
   imagePullSecrets:
     - name: rajdoc-registry
-
   command: ["python", "main.py"]
 
   parameters:
@@ -16,18 +14,23 @@ spec:
       default: |
         You are an experienced SAP ABAP engineer and debugger.
         Analyze ST22 dump JSON and return only JSON as described.
+
     llm_provider:
       type: string
       default: "openai"
+
     openai_model:
       type: string
       default: "gpt-4o-mini"
+
     max_tokens:
       type: integer
       default: 800
+
     temperature:
       type: number
       default: 0.0
+
     storage_db:
       type: string
       default: "data/st22.db"
