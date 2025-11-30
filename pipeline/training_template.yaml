@@ -1,5 +1,5 @@
 apiVersion: ai.sap.com/v1alpha1
-kind: TrainingTemplate
+kind: trainingtemplate
 metadata:
   name: st22-shortdump-training-template
 spec:
@@ -30,4 +30,5 @@ spec:
       default: 0.0
     storage_db:
       type: string
+
       default: "data/st22.db"
