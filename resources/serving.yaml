@@ -1,0 +1,20 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: Serving
+metadata:
+  name: st22-shortdump-serving
+spec:
+  template: st22-shortdump-serving-template
+
+  # Number of pods
+  replicas: 1
+
+  # Public-facing routes
+  # This exposes:
+  #   GET  /health
+  #   POST /api/dumps
+  #   GET  /api/dumps/{dump_id}
+  #   GET  /api/dumps
+  interfaces:
+    - name: http-service
+      port: 8080
+      protocol: http
