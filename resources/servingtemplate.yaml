@@ -4,8 +4,6 @@ metadata:
   name: st22-shortdump-serving-template
 spec:
   # Name in registry
-  imagePullSecrets:
-    - name: rajdoc-registry
   image: "docker.io/s0026942030/shortdump:latest"
 
   # Container port exposed via FastAPI
