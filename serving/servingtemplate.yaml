@@ -4,7 +4,7 @@ metadata:
   name: st22-shortdump-serving-template
 spec:
   # Name in registry
-  image: "docker.io/s0026942030/st22-gateway:latest"
+  image: "docker.io/s0026942030/shortdump:latest"
 
   # Container port exposed via FastAPI
   ports:
