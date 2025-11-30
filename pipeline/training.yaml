@@ -1,5 +1,5 @@
 apiVersion: ai.sap.com/v1alpha1
-kind: training
+kind: Training
 metadata:
   name: st22-shortdump-training
 spec:
@@ -26,3 +26,4 @@ spec:
     temperature: 0.0
 
     storage_db: "data/st22.db"
+
