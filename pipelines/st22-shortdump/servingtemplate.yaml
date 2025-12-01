@@ -1,12 +1,12 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: shortdump-serving
+  name: st22-shortdump-serving-template
   annotations:
-    scenarios.ai.sap.com/description: "Short dump analysis"
     scenarios.ai.sap.com/name: "Short dump use case"
-    executables.ai.sap.com/description: "Short dump use case Analysis"
+    scenarios.ai.sap.com/description: "Short dump analysis"
     executables.ai.sap.com/name: "Short-dump-Executable"
+    executables.ai.sap.com/description: "Short dump use case Analysis"
   labels:
     ai.sap.com/version: "4.0"
     scenarios.ai.sap.com/id: "st22Shortdump"
@@ -14,6 +14,7 @@ metadata:
 spec:
   template:
     apiVersion: serving.kserve.io/v1beta1
+    kind: InferenceService
     metadata:
       annotations:
         autoscaling.knative.dev/metric: rps
