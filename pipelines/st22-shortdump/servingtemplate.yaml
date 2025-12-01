@@ -3,7 +3,7 @@ kind: ServingTemplate
 metadata:
   name: st22-shortdump-serving-template
 spec:
-  image: "docker.io/s0026942030/shortdump:latest"
+  image: docker.io/s0026942030/shortdump:latest
   imagePullSecrets:
     - name: rajdoc-registry
   ports:
