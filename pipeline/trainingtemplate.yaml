@@ -3,38 +3,37 @@ kind: TrainingTemplate
 metadata:
   name: st22-shortdump-training-template
 spec:
-  image: "docker.io/s0026942030/shortdump:latest"
-  imagePullSecrets:
-    - name: rajdoc-registry  
-  command: ["python", "main.py"]
+  template:
+    spec:
+      image: "docker.io/s0026942030/shortdump:latest"
+      imagePullSecrets:
+        - name: rajdoc-registry
 
-  parameters:
-    prompt_template:
-      type: string
-      default: |
-        You are an experienced SAP ABAP engineer and debugger.
-        Analyze ST22 dump JSON and return only JSON as described.
+      command: ["python", "main.py"]
 
-    llm_provider:
-      type: string
-      default: "openai"
+      parameters:
+        prompt_template:
+          type: string
+          default: |
+            You are an experienced SAP ABAP engineer and debugger.
+            Analyze ST22 dump JSON and return only JSON as described.
 
-    openai_model:
-      type: string
-      default: "gpt-4o-mini"
+        llm_provider:
+          type: string
+          default: "openai"
 
-    max_tokens:
-      type: integer
-      default: 800
+        openai_model:
+          type: string
+          default: "gpt-4o-mini"
 
-    temperature:
-      type: number
-      default: 0.0
+        max_tokens:
+          type: integer
+          default: 800
 
-    storage_db:
-      type: string
-      default: "data/st22.db"
+        temperature:
+          type: number
+          default: 0.0
 
-
-
-
+        storage_db:
+          type: string
+          default: "data/st22.db"
