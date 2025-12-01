@@ -1,29 +1,47 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: st22-shortdump-serving-template
+  name: shortdump-serving
+  annotations:
+    scenarios.ai.sap.com/description: "Short dump analysis"
+    scenarios.ai.sap.com/name: "Short dump use case"
+    executables.ai.sap.com/description: "Short dump use case Analysis"
+    executables.ai.sap.com/name: "Short-dump-Executable"
+  labels:
+    ai.sap.com/version: "4.0"
+    scenarios.ai.sap.com/id: "st22Shortdump"
+
 spec:
-  image: docker.io/s0026942030/shortdump:latest
-  imagePullSecrets:
-    - name: rajdoc-registry
-  ports:
-    - name: http
-      containerPort: 8080
+  template:
+    apiVersion: serving.kserve.io/v1beta1
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: rps
+        autoscaling.knative.dev/target: "100"
+        autoscaling.knative.dev/targetBurstCapacity: "70"
 
-  command: ["python"]
-  args: ["-m", "app.main"]
-
-  env:
-    - name: LOG_LEVEL
-      value: "INFO"
-    - name: LLM_PROVIDER
-      value: "openai"
-    - name: OPENAI_MODEL
-      value: "gpt-4o-mini"
-    - name: STORAGE_DB
-      value: "/app/data/st22.db"
-
-  resources:
-    limits:
-      cpu: "1"
-      memory: "1Gi"
+    spec:
+      predictor:
+        minReplicas: 0
+        maxReplicas: 5
+        imagePullSecrets:
+          - name: rajdoc-registry
+        containers:
+          - name: kserve-container
+            image: docker.io/s0026942030/simple-test:latest
+            ports:
+              - name: http
+                containerPort: 8080
+            env:
+              - name: LOG_LEVEL
+                value: "INFO"
+              - name: LLM_PROVIDER
+                value: "openai"
+              - name: OPENAI_MODEL
+                value: "gpt-4o-mini"
+              - name: STORAGE_DB
+                value: "/app/data/st22.db"
+            resources:
+              limits:
+                cpu: "1"
+                memory: "1Gi"
