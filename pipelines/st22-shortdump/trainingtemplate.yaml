@@ -2,10 +2,13 @@ apiVersion: ai.sap.com/v1alpha1
 kind: TrainingTemplate
 metadata:
   name: st22-shortdump-training-template
+
 spec:
   image: "docker.io/s0026942030/shortdump:latest"
+
   imagePullSecrets:
     - name: rajdoc-registry  
+
   command: ["python", "main.py"]
 
   parameters:
@@ -35,6 +38,9 @@ spec:
       type: string
       default: "data/st22.db"
 
-
-
-
+  # REQUIRED BLOCK IN TRAINING TEMPLATE
+  outputs:
+    artifacts:
+      model_output:
+        type: model
+        description: "Dummy output to satisfy AI Core requirements"
