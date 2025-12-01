@@ -6,7 +6,8 @@ spec:
   template:
     apiVersion: serving.kserve.io/v1beta1
     kind: InferenceService
-    metadata: {}
+    metadata:
+      name: st22-shortdump-isvc
     spec:
       predictor:
         containers:
