@@ -25,3 +25,7 @@ spec:
     max_tokens: 800
     temperature: 0.0
     storage_db: "data/st22.db"
+
+  compute:
+    nodeSelector:
+      size: small
