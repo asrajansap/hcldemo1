@@ -1,0 +1,7 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: Serving
+metadata:
+  name: st22-shortdump-serving
+spec:
+  template: st22-shortdump-serving-template
+  replicas: 1
