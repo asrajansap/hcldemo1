@@ -13,16 +13,12 @@ metadata:
 
 spec:
   template:
-    apiVersion: serving.kserve.io/v1beta1
-    kind: InferenceService
-
     metadata:
-      annotations: |
+      annotations:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
-
-    spec: |
+    spec:
       predictor:
         minReplicas: 0
         maxReplicas: 5
