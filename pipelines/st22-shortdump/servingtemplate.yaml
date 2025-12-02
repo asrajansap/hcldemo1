@@ -1,7 +1,7 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: st22-shortdump-serving-template
+  name: st22-shortdump-serving-template  
   annotations:
     scenarios.ai.sap.com/name: "Short dump use case"
     scenarios.ai.sap.com/description: "Short dump analysis"
@@ -32,6 +32,8 @@ spec:
             limits:
               cpu: "1"
               memory: "1Gi"
+
       imagePullSecrets:
         - name: rajdoc-registry
+
       replicaCount: 1
