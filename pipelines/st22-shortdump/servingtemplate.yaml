@@ -12,37 +12,27 @@ metadata:
     scenarios.ai.sap.com/id: "st22Shortdump"
 
 spec:
-  template: |
-    apiVersion: serving.kserve.io/v1beta1
-    kind: InferenceService
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: rps
-        autoscaling.knative.dev/target: "100"
-        autoscaling.knative.dev/targetBurstCapacity: "70"
-    spec:
-      predictor:
-        minReplicas: 0
-        maxReplicas: 5
-        imagePullSecrets:
-          - name: rajdoc-registry
-        containers:
-          - name: kserve-container
-            image: docker.io/s0026942030/simple-test:latest
-            ports:
-              - name: http
-                containerPort: 8080
-                protocol: TCP
-            env:
-              - name: LOG_LEVEL
-                value: "INFO"
-              - name: LLM_PROVIDER
-                value: "openai"
-              - name: OPENAI_MODEL
-                value: "gpt-4o-mini"
-              - name: STORAGE_DB
-                value: "/app/data/st22.db"
-            resources:
-              limits:
-                cpu: "1"
-                memory: "1Gi"
+  containers:
+    - name: kserve-container
+      image: docker.io/s0026942030/simple-test:latest
+      ports:
+        - name: http
+          containerPort: 8080
+      env:
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: LLM_PROVIDER
+          value: "openai"
+        - name: OPENAI_MODEL
+          value: "gpt-4o-mini"
+        - name: STORAGE_DB
+          value: "/app/data/st22.db"
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+
+  imagePullSecrets:
+    - name: rajdoc-registry
+
+  replicas: 1
