@@ -12,18 +12,28 @@ metadata:
     scenarios.ai.sap.com/id: "st22Shortdump"
 
 spec:
+
+  # THIS IS THE IMPORTANT PART
+  inputArtifacts:
+    - name: dump-json
+      description: "SAP short dump in JSON format"
+      type: JSON
+
+  outputArtifacts:
+    - name: dump-analysis
+      description: "Short dump LLM output"
+      type: JSON
+
   template:
     apiVersion: serving.kserve.io/v1beta1
     kind: InferenceService
+
     metadata:
       annotations: |
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
-    inputArtifacts: |
-      - name: dump-json
-        description: "SAP short dump in JSON format"
-        type: JSON
+
     spec: |
       predictor:
         minReplicas: 0
