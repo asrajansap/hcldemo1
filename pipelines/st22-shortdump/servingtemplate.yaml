@@ -30,7 +30,7 @@ spec:
           - name: rajdoc-registry
         containers:
           - name: kserve-container
-            image: docker.io/s0026942030/simple-test:latest
+            image: docker.io/s0026942030/shortdump:latest
             ports:
               - name: http
                 containerPort: 8080
