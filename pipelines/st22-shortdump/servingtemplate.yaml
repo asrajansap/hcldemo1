@@ -20,7 +20,7 @@ spec:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
-    inputArtifacts:
+    inputArtifacts: |
       - name: dump-json
         description: "SAP short dump in JSON format"
         type: JSON
