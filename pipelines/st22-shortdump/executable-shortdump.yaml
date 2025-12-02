@@ -1,7 +1,7 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: Executable
 metadata:
-  name: shortdump-executable
+  name: Short-dump-Executable
 spec:
   inputArtifacts:
     - name: dump-json
