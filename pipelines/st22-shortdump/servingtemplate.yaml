@@ -13,17 +13,7 @@ metadata:
 
 spec:
 
-  # THIS IS THE IMPORTANT PART
-  inputArtifacts:
-    - name: dump-json
-      description: "SAP short dump in JSON format"
-      type: JSON
-      path: /app/data/ # where to copy in the Dataset in the Docker image
 
-  outputArtifacts:
-    - name: dump-analysis
-      description: "Short dump LLM output"
-      type: JSON
 
   template:
     apiVersion: serving.kserve.io/v1beta1
@@ -41,6 +31,17 @@ spec:
         maxReplicas: 1
         imagePullSecrets:
           - name: rajdoc-registry
+      # THIS IS THE IMPORTANT PART
+    inputArtifacts:
+      - name: dump-json
+        description: "SAP short dump in JSON format"
+       type: JSON
+        path: /app/data/ # where to copy in the Dataset in the Docker image
+
+  outputArtifacts:
+    - name: dump-analysis
+      description: "Short dump LLM output"
+      type: JSON          
         containers:
           - name: kserve-container
             image: docker.io/s0026942030/shortdump:latest
