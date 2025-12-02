@@ -30,7 +30,7 @@ spec:
     apiVersion: serving.kserve.io/v1beta1
     kind: InferenceService
     metadata:
-      annotations: |
+      annotations: 
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
