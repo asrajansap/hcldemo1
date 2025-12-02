@@ -18,6 +18,7 @@ spec:
     - name: dump-json
       description: "SAP short dump in JSON format"
       type: JSON
+      path: /app/data/ # where to copy in the Dataset in the Docker image
 
   outputArtifacts:
     - name: dump-analysis
