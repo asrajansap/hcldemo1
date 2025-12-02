@@ -5,7 +5,7 @@ metadata:
   annotations:
     scenarios.ai.sap.com/name: "Short dump use case"
     scenarios.ai.sap.com/description: "Short dump analysis"
-    executables.ai.sap.com/name: "Short-dump-Executable"
+    executables.ai.sap.com/name: "shortdump-executable"
     executables.ai.sap.com/description: "Short dump use case analysis"
   labels:
     ai.sap.com/version: "4.0"
