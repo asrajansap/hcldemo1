@@ -17,7 +17,6 @@ spec:
     - name: dump-json
       description: "SAP short dump in JSON format"
       type: JSON
-      path: /app/data/
 
   outputArtifacts:
     - name: dump-analysis
