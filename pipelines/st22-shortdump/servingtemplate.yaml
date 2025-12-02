@@ -13,12 +13,11 @@ metadata:
 
 spec:
 
-  # THIS IS THE IMPORTANT PART
   inputArtifacts:
     - name: dump-json
       description: "SAP short dump in JSON format"
       type: JSON
-      path: /app/data/ # where to copy in the Dataset in the Docker image
+      path: /app/data/
 
   outputArtifacts:
     - name: dump-analysis
@@ -30,12 +29,12 @@ spec:
     kind: InferenceService
 
     metadata:
-      annotations: |
-        autoscaling.knative.dev/metric: rps
+      annotations:
+        autoscaling.knative.dev/metric: "rps"
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
 
-    spec: |
+    spec:
       predictor:
         minReplicas: 0
         maxReplicas: 1
