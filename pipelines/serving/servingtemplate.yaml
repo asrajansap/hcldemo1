@@ -12,14 +12,11 @@ metadata:
     scenarios.ai.sap.com/id: "st22Shortdump"
 
 spec:
-  # -----------------------------
-  # ✔️ INPUT PARAMETERS (Strings)
-  # -----------------------------
   inputs:
     parameters:
-      - name: dump        # The full dump JSON (string)
+      - name: dump
         type: string
-      - name: dumpcode    # Optional code snippet string
+      - name: dumpcode
         type: string
 
   template:
@@ -58,15 +55,8 @@ spec:
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
 
-              # -----------------------------------------------------
-              # OPTIONAL: If your app wants dump/dumpcode via env vars
-              # Your current FastAPI code reads payload from POST body,
-              # so these are not required — uncomment only if needed.
-              # -----------------------------------------------------
-               - name: DUMP_JSON
-                 value: "{{inputs.parameters.dump}}"
-              # - name: DUMP_CODE
-              #   value: "{{inputs.parameters.dumpcode}}"
+              - name: DUMP_JSON
+                value: "{{inputs.parameters.dump}}"
 
             resources:
               limits:
