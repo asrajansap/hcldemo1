@@ -30,7 +30,7 @@ spec:
         imagePullSecrets:
           - name: rajdoc-registry
 
-        annotations:
+        annotations: |
           autoscaling.knative.dev/metric: rps
           autoscaling.knative.dev/target: "100"
           autoscaling.knative.dev/targetBurstCapacity: "70"
