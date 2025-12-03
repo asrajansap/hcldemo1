@@ -14,9 +14,9 @@ metadata:
 spec:
   inputs:
     parameters:
-      - name: dump
+      - name: dump_header         # NEW
         type: string
-      - name: dumpcode
+      - name: dump_code           # NEW
         type: string
 
   template:
@@ -28,6 +28,7 @@ spec:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
+        serving.kserve.io/rest: "true"   # IMPORTANT
 
     spec: |
       predictor:
@@ -42,6 +43,16 @@ spec:
               - name: http
                 containerPort: 8080
                 protocol: TCP
+
+            # IMPORTANT: Tell KServe how to POST to your FastAPI endpoint
+            args:
+              - "--model_name={{inputs.parameters.dump_header}}"
+              - "--model_payload={
+                  \"dump_header\": {{inputs.parameters.dump_header}},
+                  \"dump_code\": {{inputs.parameters.dump_code}}
+                }"
+              - "--model_uri=http://127.0.0.1:8080/api/dumps"
+
             env:
               - name: LOG_LEVEL
                 value: "INFO"
@@ -51,8 +62,7 @@ spec:
                 value: "gpt-4o-mini"
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
-              - name: DUMP_JSON
-                value: "{{inputs.parameters.dump}}"
+
             resources:
               limits:
                 cpu: "1"
