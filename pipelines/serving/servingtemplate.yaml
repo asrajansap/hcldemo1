@@ -23,8 +23,8 @@ spec:
     apiVersion: "serving.kserve.io/v1beta1"
     kind: "InferenceService"
 
-    metadata: 
-      annotations: |
+    metadata: |
+      annotations:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
@@ -56,7 +56,6 @@ spec:
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
 
-            # The serving runtime will POST this JSON to /api/dumps
             args:
               - "--handler=rest"
               - "--rest_path=/api/dumps"
