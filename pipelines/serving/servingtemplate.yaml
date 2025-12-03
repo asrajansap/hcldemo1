@@ -12,7 +12,15 @@ metadata:
     scenarios.ai.sap.com/id: "st22Shortdump"
 
 spec:
-
+  # -----------------------------
+  # ✔️ INPUT PARAMETERS (Strings)
+  # -----------------------------
+  inputs:
+    parameters:
+      - name: dump        # The full dump JSON (string)
+        type: string
+      - name: dumpcode    # Optional code snippet string
+        type: string
 
   template:
     apiVersion: serving.kserve.io/v1beta1
@@ -40,12 +48,26 @@ spec:
             env:
               - name: LOG_LEVEL
                 value: "INFO"
+
               - name: LLM_PROVIDER
                 value: "openai"
+
               - name: OPENAI_MODEL
                 value: "gpt-4o-mini"
+
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
+
+              # -----------------------------------------------------
+              # OPTIONAL: If your app wants dump/dumpcode via env vars
+              # Your current FastAPI code reads payload from POST body,
+              # so these are not required — uncomment only if needed.
+              # -----------------------------------------------------
+               - name: DUMP_JSON
+                 value: "{{inputs.parameters.dump}}"
+              # - name: DUMP_CODE
+              #   value: "{{inputs.parameters.dumpcode}}"
+
             resources:
               limits:
                 cpu: "1"
