@@ -23,7 +23,7 @@ spec:
     apiVersion: serving.kserve.io/v1beta1
     kind: InferenceService
 
-    metadata: |
+    metadata:
       annotations:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
@@ -36,13 +36,16 @@ spec:
         maxReplicas: 1
         imagePullSecrets:
           - name: rajdoc-registry
+
         containers:
           - name: kserve-container
             image: docker.io/s0026942030/shortdump:latest
+
             ports:
               - name: http
                 containerPort: 8080
                 protocol: TCP
+
             env:
               - name: LOG_LEVEL
                 value: "INFO"
@@ -52,11 +55,13 @@ spec:
                 value: "gpt-4o-mini"
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
+
             args:
               - "--handler=rest"
               - "--rest_path=/api/dumps"
               - "--rest_body={\"dump_header\": \"{{inputs.parameters.dump_header}}\", \"dump_code\": \"{{inputs.parameters.dump_code}}\"}"
+
             resources:
               limits:
-                cpu: \"1\"
-                memory: \"1Gi\"
+                cpu: "1"
+                memory: "1Gi"
