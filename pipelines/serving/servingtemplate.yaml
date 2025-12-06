@@ -1,3 +1,4 @@
+
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
@@ -23,18 +24,25 @@ spec:
     apiVersion: serving.kserve.io/v1beta1
     kind: InferenceService
 
+    # >>> This metadata block is required (annotations & labels here, not inside predictor)
+    metadata:
+      annotations: |
+        autoscaling.knative.dev/metric: rps
+        autoscaling.knative.dev/target: "100"
+        autoscaling.knative.dev/targetBurstCapacity: "70"
+        serving.kserve.io/rest: "true"
+      labels: |
+        # Exactly one of these must be present.
+        # If you use instance types in your tenant, set ai.sap.com/instanceType instead.
+        ai.sap.com/resourcePlan: basic
+
+    # >>> KServe spec must be provided as a multiline string and contain the predictor.
     spec: |
       predictor:
         minReplicas: 0
         maxReplicas: 1
         imagePullSecrets:
           - name: rajdoc-registry
-
-        annotations: |
-          autoscaling.knative.dev/metric: rps
-          autoscaling.knative.dev/target: "100"
-          autoscaling.knative.dev/targetBurstCapacity: "70"
-          serving.kserve.io/rest: "true"
 
         containers:
           - name: kserve-container
