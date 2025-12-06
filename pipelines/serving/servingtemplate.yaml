@@ -31,8 +31,7 @@ spec:
         serving.kserve.io/rest: "true"
       labels: |
         ai.sap.com/resourcePlan: basic
-        # OR, if your tenant uses instance types:
-        # ai.sap.com/instanceType: standard
+        # OR: ai.sap.com/instanceType: standard
 
     spec: |
       predictor:
