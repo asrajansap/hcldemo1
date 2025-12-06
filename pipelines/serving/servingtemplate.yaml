@@ -21,10 +21,8 @@ spec:
         type: string
 
   template:
-    apiVersion: serving.kserve.io/v1beta1
-    kind: InferenceService
+    apiVersion: "serving.kserve.io/v1beta1"
 
-    # >>> This metadata block is required (annotations & labels here, not inside predictor)
     metadata:
       annotations: |
         autoscaling.knative.dev/metric: rps
@@ -32,11 +30,10 @@ spec:
         autoscaling.knative.dev/targetBurstCapacity: "70"
         serving.kserve.io/rest: "true"
       labels: |
-        # Exactly one of these must be present.
-        # If you use instance types in your tenant, set ai.sap.com/instanceType instead.
         ai.sap.com/resourcePlan: basic
+        # OR, if your tenant uses instance types:
+        # ai.sap.com/instanceType: standard
 
-    # >>> KServe spec must be provided as a multiline string and contain the predictor.
     spec: |
       predictor:
         minReplicas: 0
