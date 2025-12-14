@@ -1,4 +1,3 @@
-
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
@@ -21,22 +20,22 @@ spec:
         type: string
 
   template:
-    apiVersion: "serving.kserve.io/v1beta1"
+    apiVersion: serving.kserve.io/v1beta1
 
     metadata:
-      annotations: |
+      annotations:
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
         serving.kserve.io/rest: "true"
-      labels: |
+      labels:
         ai.sap.com/resourcePlan: basic
-        # OR: ai.sap.com/instanceType: standard
 
-    spec: |
+    spec:
       predictor:
         minReplicas: 0
         maxReplicas: 1
+
         imagePullSecrets:
           - name: rajdoc-registry
 
@@ -50,19 +49,70 @@ spec:
                 protocol: TCP
 
             env:
+              # -------------------------------
+              # Logging
+              # -------------------------------
               - name: LOG_LEVEL
                 value: "INFO"
+
+              # -------------------------------
+              # LLM selection
+              # -------------------------------
               - name: LLM_PROVIDER
                 value: "sap_aicore"
+
+              # -------------------------------
+              # SAP AI Core – REQUIRED
+              # -------------------------------
+              - name: AI_CORE_TOKEN_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: aicore-credentials
+                    key: token_url
+
+              - name: AI_CORE_CLIENT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: aicore-credentials
+                    key: client_id
+
+              - name: AI_CORE_CLIENT_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: aicore-credentials
+                    key: client_secret
+
+              - name: AI_CORE_INFERENCE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: aicore-credentials
+                    key: inference_url
+
               - name: AI_CORE_MODEL_NAME
                 value: "gpt-4o-mini"
+
+              # -------------------------------
+              # LLM tuning (optional)
+              # -------------------------------
+              - name: LLM_MAX_TOKENS
+                value: "800"
+              - name: LLM_TEMPERATURE
+                value: "0.0"
+
+              # -------------------------------
+              # App storage
+              # -------------------------------
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
 
             args:
               - "--handler=rest"
               - "--rest_path=/api/dumps"
-              - "--rest_body={\"dump_header\": \"{{inputs.parameters.dump_header}}\", \"dump_code\": \"{{inputs.parameters.dump_code}}\"}"
+              - >-
+                --rest_body={
+                  "dump_header":"{{inputs.parameters.dump_header}}",
+                  "dump_code":"{{inputs.parameters.dump_code}}"
+                }
 
             resources:
               limits:
