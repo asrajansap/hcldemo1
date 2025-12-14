@@ -53,8 +53,8 @@ spec:
               - name: LOG_LEVEL
                 value: "INFO"
               - name: LLM_PROVIDER
-                value: "openai"
-              - name: OPENAI_MODEL
+                value: "sap_aicore"
+              - name: AI_CORE_MODEL_NAME
                 value: "gpt-4o-mini"
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
