@@ -23,15 +23,16 @@ spec:
     apiVersion: serving.kserve.io/v1beta1
 
     metadata:
-      annotations:
+      annotations: |
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/target: "100"
         autoscaling.knative.dev/targetBurstCapacity: "70"
         serving.kserve.io/rest: "true"
-      labels:
+
+      labels: |
         ai.sap.com/resourcePlan: basic
 
-    spec:
+    spec: |
       predictor:
         minReplicas: 0
         maxReplicas: 1
@@ -49,21 +50,12 @@ spec:
                 protocol: TCP
 
             env:
-              # -------------------------------
-              # Logging
-              # -------------------------------
               - name: LOG_LEVEL
                 value: "INFO"
 
-              # -------------------------------
-              # LLM selection
-              # -------------------------------
               - name: LLM_PROVIDER
                 value: "sap_aicore"
 
-              # -------------------------------
-              # SAP AI Core – REQUIRED
-              # -------------------------------
               - name: AI_CORE_TOKEN_URL
                 valueFrom:
                   secretKeyRef:
@@ -91,17 +83,12 @@ spec:
               - name: AI_CORE_MODEL_NAME
                 value: "gpt-4o-mini"
 
-              # -------------------------------
-              # LLM tuning (optional)
-              # -------------------------------
               - name: LLM_MAX_TOKENS
                 value: "800"
+
               - name: LLM_TEMPERATURE
                 value: "0.0"
 
-              # -------------------------------
-              # App storage
-              # -------------------------------
               - name: STORAGE_DB
                 value: "/app/data/st22.db"
 
