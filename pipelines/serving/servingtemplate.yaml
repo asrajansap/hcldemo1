@@ -37,6 +37,7 @@ spec:
 
             ports:
               - containerPort: 8080
+                protocol: TCP
 
             env:
               - name: LOG_LEVEL
