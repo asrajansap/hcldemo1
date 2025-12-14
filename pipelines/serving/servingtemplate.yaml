@@ -42,7 +42,7 @@ spec:
 
         containers:
           - name: kserve-container
-            image: docker.io/s0026942030/shortdump:latest
+            image: docker.io/s0026942030/st22-gateway:latest
 
             ports:
               - name: http
