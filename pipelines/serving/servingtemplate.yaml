@@ -56,22 +56,22 @@ spec:
               - name: AICORE_URL
                 value: "https://api.ai.sap.com"
 
-              - name: AICORE_DEPLOYMENT_ID
-                value: "your-aicore-deployment-id"
+              - name: AI_CORE_INFERENCE_URL
+                value: "https://api.ai.prod.eu-central-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d24683bad313b157/chat/completions?api-version=2023-05-15"
 
-              - name: AICORE_TOKEN_URL
+              - name: AI_CORE_TOKEN_URL
                 valueFrom:
                   secretKeyRef:
                     name: xsuaa-secret
                     key: url
 
-              - name: AICORE_CLIENT_ID
+              - name: AI_CORE_CLIENT_ID
                 valueFrom:
                   secretKeyRef:
                     name: xsuaa-secret
                     key: clientid
 
-              - name: AICORE_CLIENT_SECRET
+              - name: AI_CORE_CLIENT_SECRET
                 valueFrom:
                   secretKeyRef:
                     name: xsuaa-secret
