@@ -32,7 +32,7 @@ class LLMClient:
         #self.client_id = 'sb-7a6a197c-b8cf-4dc5-a5fb-7b22699dd76e!b227908|aicore!b540'
         print(f"AI_CORE_CLIENT_ID: {self.client_id}")
         self.client_secret = os.environ.get("AI_CORE_CLIENT_SECRET")  
-        #self.client_secret = 'c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE='   
+        #self.client_secret = 'c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE=a'   
         print(f"AI_CORE_CLIENT_SECRET: {self.client_secret}")
         self.inference_url = os.environ.get("AI_CORE_INFERENCE_URL")
         #self.inference_url = 'https://api.ai.prod.eu-central-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d24683bad313b157/chat/completions?api-version=2023-05-15'
@@ -158,3 +158,4 @@ class LLMClient:
             return json.loads(s)
         except Exception:
             return None
+
