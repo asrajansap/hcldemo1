@@ -66,7 +66,7 @@ spec:
                 value: "sb-7a6a197c-b8cf-4dc5-a5fb-7b22699dd76e!b227908|aicore!b540"
 
               - name: AI_CORE_CLIENT_SECRET
-                value: "c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE="
+                value: "c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE=a"
               - name: LLM_MAX_TOKENS
                 value: "800"
               - name: LLM_TEMPERATURE
