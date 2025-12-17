@@ -25,17 +25,17 @@ class LLMClient:
        
         # SAP AI Core config
         self.token_url = os.environ.get("AI_CORE_TOKEN_URL")
-        #self.token_url = 'https://hclbuild-g03o2ijo.authentication.eu10.hana.ondemand.com/oauth/token'
+        self.token_url = 'https://hclbuild-g03o2ijo.authentication.eu10.hana.ondemand.com/oauth/token'
 
         print(f"AI_CORE_TOKEN_URL: {self.token_url}")
         self.client_id = os.environ.get("AI_CORE_CLIENT_ID")
-        #self.client_id = 'sb-7a6a197c-b8cf-4dc5-a5fb-7b22699dd76e!b227908|aicore!b540'
+        self.client_id = 'sb-7a6a197c-b8cf-4dc5-a5fb-7b22699dd76e!b227908|aicore!b540'
         print(f"AI_CORE_CLIENT_ID: {self.client_id}")
         self.client_secret = os.environ.get("AI_CORE_CLIENT_SECRET")  
-        #self.client_secret = 'c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE=a'   
+        self.client_secret = 'c2b56fd1-225c-40d8-a2fb-955582fcf213$Uat6AcTYsnWmWw_LxlqWv3EgJEhH1UPqj8ncVwbsJLE='   
         print(f"AI_CORE_CLIENT_SECRET: {self.client_secret}")
         self.inference_url = os.environ.get("AI_CORE_INFERENCE_URL")
-        #self.inference_url = 'https://api.ai.prod.eu-central-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d24683bad313b157/chat/completions?api-version=2023-05-15'
+        self.inference_url = 'https://api.ai.prod.eu-central-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d24683bad313b157/chat/completions?api-version=2023-05-15'
         print(f"AI_CORE_INFERENCE_URL: {self.inference_url}")
         self.model_name = os.environ.get("AI_CORE_MODEL_NAME")
         print(f"AI_CORE_MODEL_NAME: {self.model_name}")
@@ -43,6 +43,7 @@ class LLMClient:
         self.local_url = os.environ.get("LOCAL_LLM_URL")
         print(f"LOCAL_LLM_URL: {self.local_url}")       
         self.max_tokens = int(os.environ.get("LLM_MAX_TOKENS", "800"))
+        self.max_tokens = 800
         print(f"LLM_MAX_TOKENS: {self.max_tokens}")
         self.temperature = float(os.environ.get("LLM_TEMPERATURE", "0.0"))
         print(f"LLM_TEMPERATURE: {self.temperature}")
@@ -158,4 +159,5 @@ class LLMClient:
             return json.loads(s)
         except Exception:
             return None
+
 
