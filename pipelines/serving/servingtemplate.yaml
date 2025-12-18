@@ -30,8 +30,8 @@ spec:
         minReplicas: 0
         maxReplicas: 1
 
-        #imagePullSecrets:
-        #  - name: rajdoc-registry
+        imagePullSecrets:
+          - name: rajdoc-registry
 
         annotations:
           autoscaling.knative.dev/metric: "rps"
